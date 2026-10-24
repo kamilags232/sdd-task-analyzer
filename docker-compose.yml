@@ -1,0 +1,4 @@
+services:
+  task-analyzer:
+    build: .
+    container_name: task-analyzer-tests

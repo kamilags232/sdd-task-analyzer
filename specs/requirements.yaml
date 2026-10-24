@@ -1,0 +1,102 @@
+
+project:
+  name: TaskAnalyzer
+  version: "1.0.0"
+  description: >
+    Sistema para analisar tarefas e gerar indicadores de produtividade
+    com base nos dados fornecidos.
+
+functional_requirements:
+  - id: RF01
+    title: Receber tarefas
+    description: >
+      O sistema deve receber tarefas contendo identificador, título,
+      prioridade, data de criação, data de conclusão e status.
+
+  - id: RF02
+    title: Calcular tempo médio de conclusão
+    description: >
+      O sistema deve calcular o tempo médio de conclusão das tarefas
+      concluídas, utilizando as datas de criação e conclusão.
+
+  - id: RF03
+    title: Calcular taxa de atraso
+    description: >
+      O sistema deve fornecer a taxa de atraso das tarefas conforme
+      uma regra de atraso previamente definida e aprovada.
+
+  - id: RF04
+    title: Gerar indicadores por prioridade
+    description: >
+      O sistema deve apresentar contagens e indicadores agrupados
+      por prioridade.
+
+  - id: RF05
+    title: Gerar indicadores gerais
+    description: >
+      O sistema deve apresentar indicadores gerais das tarefas analisadas.
+
+non_functional_requirements:
+  - id: RNF01
+    title: Linguagem
+    description: O projeto deve utilizar Python 3.11 ou superior.
+
+  - id: RNF02
+    title: Tipagem
+    description: Todas as funções e métodos devem possuir type hints.
+
+  - id: RNF03
+    title: Manutenibilidade
+    description: >
+      O código deve seguir PEP 8, utilizar responsabilidade única
+      e possuir docstrings no padrão Google.
+
+  - id: RNF04
+    title: Tratamento de erros
+    description: >
+      Entradas inválidas devem gerar exceções específicas,
+      com mensagens claras.
+
+  - id: RNF05
+    title: Logging
+    description: O sistema deve utilizar logging estruturado.
+
+  - id: RNF06
+    title: Persistência
+    description: O sistema não deve persistir dados em arquivos ou banco de dados.
+
+business_rules:
+  - id: RN01
+    description: >
+      Uma tarefa sem data de conclusão deve ser considerada pendente.
+
+  - id: RN02
+    description: >
+      Datas inválidas devem ser tratadas por meio de uma exceção específica.
+
+  - id: RN03
+    description: >
+      Divisões por zero devem ser evitadas.
+
+  - id: RN04
+    description: >
+      Resultados numéricos devem ser arredondados para duas casas decimais,
+      conforme a especificação.
+
+acceptance_criteria:
+  - id: CA01
+    description: O sistema calcula corretamente o tempo médio de conclusão.
+  - id: CA02
+    description: O sistema identifica tarefas pendentes.
+  - id: CA03
+    description: O sistema trata entradas e datas inválidas.
+  - id: CA04
+    description: O sistema evita erros de divisão por zero.
+  - id: CA05
+    description: O sistema gera indicadores por prioridade e gerais.
+
+constraints:
+  - Não adicionar funcionalidades sem testes correspondentes.
+  - Não alterar a especificação para adequá-la ao código implementado.
+  - Não adicionar persistência de dados.
+  - Validar os resultados por meio de testes automatizados e revisão humana.
