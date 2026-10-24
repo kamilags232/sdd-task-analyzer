@@ -1,207 +1,182 @@
-# TaskAnalyzer — Análise de Métricas de Produtividade
 
-![Python Version](https://img.shields.io/badge/python-3.11%2B-blue.svg)
-![Test Harness](https://img.shields.io/badge/tests-pytest%20100%25%20passed-brightgreen.svg)
-![Architecture](https://img.shields.io/badge/architecture-SDD%20%7C%20Spec--Driven-orange.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
+# TaskAnalyzer
 
-O **TaskAnalyzer** é um módulo em Python concebido para analisar conjuntos de tarefas e calcular indicadores estratégicos de produtividade, tais como o tempo médio de conclusão (geral e por prioridade) e a taxa de atraso. 
+![Python](https://img.shields.io/badge/Python-3.11%2B-blue)
+![SDD](https://img.shields.io/badge/Development-SDD-purple)
+![Tests](https://img.shields.io/badge/Tests-Pytest-green)
+![License](https://img.shields.io/badge/License-MIT-yellow)
 
-Este projeto foi desenvolvido na disciplina **Bootcamp III** (Ciência da Computação — CEUB) utilizando a metodologia **Spec-Driven Development (SDD)**, onde o código-fonte e os testes automatizados são orientados estritamente por contratos técnicos executáveis e regras de governança de IA.
+## Sobre o projeto
 
----
+O **TaskAnalyzer** é um projeto desenvolvido em Python com base na abordagem **Specification-Driven Development (SDD)**. Seu objetivo é analisar tarefas e gerar indicadores de produtividade a partir dos dados fornecidos.
 
-##  Principais Funcionalidades
+O sistema permite acompanhar informações gerais das tarefas, calcular o tempo médio de conclusão e apresentar indicadores organizados por prioridade, seguindo as regras estabelecidas na especificação do projeto.
 
-- ** Indicadores Gerais de Produtividade:** Contagem automática do total de tarefas, tarefas concluídas e tarefas pendentes.
-- ** Tempo Médio de Conclusão:** Cálculo do tempo médio gasto para concluir tarefas (em horas), com precisão de duas casas decimais.
-- ** Métricas Agrupadas por Prioridade:** Análise detalhada dos tempos e volumes de tarefas segmentados por nível de prioridade (ex.: *Alta*, *Média*, *Baixa*).
-- ** Taxa de Atraso Percentual:** Métricas percentuais sobre o cumprimento dos estados das tarefas.
-- ** Validação Rigorosa de Dados:** Tratamento e rejeição automática de inconsistências nas datas (ex.: `data_conclusao` anterior à `data_criacao`) através da exceção personalizada `TaskValidationError`.
-- ** Prevenção de Erros Em Tempo de Execução:** Proteção total contra divisão por zero para cenários com zero tarefas concluídas ou listas vazias.
+## Funcionalidades
 
----
+- Análise geral das tarefas cadastradas.
+- Contagem de tarefas de acordo com seu estado.
+- Cálculo do tempo médio de conclusão.
+- Geração de indicadores por prioridade.
+- Cálculo da taxa de atraso conforme a regra definida na especificação.
+- Validação dos dados de entrada.
+- Tratamento de situações inválidas por meio de exceções específicas.
+- Tratamento de casos de borda, como entradas vazias e tarefas pendentes.
+- Testes automatizados para verificar os comportamentos especificados.
 
-##  Estrutura do Repositório
+## Estrutura do projeto
 
 ```text
 sdd-task-analyzer/
+├── .github/
+│   └── workflows/
+│       └── ci.yml
 ├── specs/
-│   └── task_analyzer_spec.md  # Contrato técnico SDD (fonte da verdade)
+│   ├── task_analyzer_spec.md
+│   └── system_design_document.pdf
 ├── src/
-│   └── task_analyzer.py       # Módulo principal com a função analyze_tasks
+│   └── task_analyzer.py
 ├── tests/
-│   └── test_harness.py        # Suíte de testes automatizados com pytest
-├── .gitignore                 # Arquivos e pastas ignorados pelo Git (.venv, cache)
-├── CONTEXT_RULES.md           # Regras de governança e restrições para IA
-├── README.md                  # Documentação do projeto
-└── requirements.txt           # Dependências do projeto (pytest)
-
+│   └── test_harness.py
+├── .gitignore
+├── CONTEXT_RULES.md
+├── Dockerfile
+├── docker-compose.yml
+├── README.md
+├── requirements.txt
+└── requirements.yaml
 ```
 
----
+## Tecnologias e ferramentas
 
-##  Como Executar o Projeto Localmente
+- **Python 3.11+:** linguagem utilizada na implementação.
+- **Pytest:** execução dos testes automatizados.
+- **Git e GitHub:** versionamento e hospedagem do código.
+- **GitHub Actions:** integração contínua.
+- **Docker:** empacotamento e execução em contêineres.
+- **Specification-Driven Development (SDD):** desenvolvimento orientado por especificações.
 
-### 1. Pré-requisitos
+## Requisitos
 
-Certifica-te de ter o **Python 3.11** ou superior e o **Git** instalados na tua máquina.
+- Python 3.11 ou superior.
+- Git.
+- pip.
+- Docker e Docker Compose, caso sejam utilizados os arquivos de contêineres.
 
-### 2. Clonar o Repositório
+## Instalação
+
+Clone o repositório:
 
 ```bash
-git clone [https://github.com/SEU_USUARIO/sdd-task-analyzer.git](https://github.com/SEU_USUARIO/sdd-task-analyzer.git)
-cd sdd-task-analyzer
-
+git clone https://github.com/SEU_USUARIO/sdd-task-analyzer.git
 ```
 
-### 3. Criar e Ativar o Ambiente Virtual
+Entre no diretório:
 
-No terminal (Git Bash ou VS Code):
+```bash
+cd sdd-task-analyzer
+```
 
-* **Windows (Git Bash):**
+Crie um ambiente virtual:
+
 ```bash
 python -m venv .venv
+```
+
+Ative o ambiente virtual.
+
+**Windows — PowerShell:**
+
+```powershell
+.venv\Scripts\Activate.ps1
+```
+
+**Windows — Git Bash:**
+
+```bash
 source .venv/Scripts/activate
-
 ```
 
+**Linux ou macOS:**
 
-* **Linux / macOS:**
 ```bash
-python3 -m venv .venv
 source .venv/bin/activate
-
 ```
 
-
-
-### 4. Instalar as Dependências
-
-Com o ambiente virtual ativo (`(.venv)` no início da linha do terminal):
+Instale as dependências:
 
 ```bash
-python -m pip install -r requirements.txt
-
+pip install -r requirements.txt
 ```
 
----
+## Executando os testes
 
-##  Execução dos Testes Automatizados (Test Harness)
-
-O projeto conta com um **Test Harness** completo construído sobre o framework `pytest`. Para executar a suíte de testes unitários e validar os cenários de aceite:
+Execute na raiz do projeto:
 
 ```bash
 python -m pytest -v
-
 ```
 
-### Resultado Esperado:
+Os cenários de teste contemplam:
 
-```text
-collected 6 items
+- Análise bem-sucedida das tarefas e cálculo dos indicadores.
+- Cálculo da taxa de atraso.
+- Validação de datas inválidas, como conclusão anterior à criação.
+- Tratamento de entrada vazia.
+- Tratamento de tarefas exclusivamente pendentes.
+- Arredondamento dos resultados para duas casas decimais.
 
-tests/test_harness.py::test_cenario_1_analise_com_sucesso_calculos_gerais_e_por_prioridade PASSED [ 16%]
-tests/test_harness.py::test_cenario_1_taxa_atraso_percentual PASSED                         [ 33%]
-tests/test_cenario_2_excecao_data_conclusao_anterior_a_data_criacao PASSED                 [ 50%]
-tests/test_caso_borda_entrada_vazia PASSED                                                  [ 66%]
-tests/test_caso_borda_apenas_tarefas_pendentes PASSED                                       [ 83%]
-tests/test_arredondamento_duas_casas_decimais PASSED                                        [100%]
+## Executando com Docker
 
-============================== 6 passed in 0.04s ==============================
+O projeto contém um `Dockerfile` e um `docker-compose.yml` para configuração do ambiente com contêineres.
 
+Para construir a imagem e iniciar os serviços:
+
+```bash
+docker compose up --build
 ```
 
----
+Para interromper os serviços:
 
-## Exemplo de Uso do Módulo
-
-```python
-from datetime import datetime, timedelta
-from src.task_analyzer import analyze_tasks
-
-agora = datetime.now()
-
-# Lista de tarefas para análise
-tarefas = [
-    {
-        "id": 1,
-        "titulo": "Implementar Test Harness",
-        "prioridade": "Alta",
-        "data_criacao": agora - timedelta(hours=6),
-        "data_conclusao": agora - timedelta(hours=2),
-        "status": "concluida"
-    },
-    {
-        "id": 2,
-        "titulo": "Documentar README",
-        "prioridade": "Média",
-        "data_criacao": agora - timedelta(hours=1),
-        "data_conclusao": None,
-        "status": "pendente"
-    }
-]
-
-# Executa a análise
-resultado = analyze_tasks(tarefas)
-
-print(resultado)
-# Saída esperada:
-# {
-#     'total_tarefas': 2,
-#     'total_concluidas': 1,
-#     'total_pendentes': 1,
-#     'taxa_atraso_percentual': 0.0,
-#     'tempo_medio_conclusao_horas': 4.0,
-#     'metricas_por_prioridade': {
-#         'Alta': {'total_tarefas': 1, 'total_concluidas': 1, 'total_pendentes': 0, 'tempo_medio_conclusao_horas': 4.0},
-#         'Média': {'total_tarefas': 1, 'total_concluidas': 0, 'total_pendentes': 1, 'tempo_medio_conclusao_horas': 0.0}
-#     }
-# }
-
+```bash
+docker compose down
 ```
 
----
+**Observação:** os comandos dependem da configuração dos arquivos Docker. A presença desses arquivos não garante, por si só, que a execução esteja funcionando.
 
-##  Governança e Diretrizes de Desenvolvimento (SDD)
+## Especificação e regras de desenvolvimento
 
-Este projeto foi desenvolvido aplicando diretrizes estritas de qualidade de software:
+O TaskAnalyzer segue a abordagem **Specification-Driven Development (SDD)**. A especificação orienta a implementação, e os testes verificam se o comportamento desenvolvido corresponde aos requisitos definidos.
 
-* **Spec-Driven Development (SDD):** Todo o comportamento foi derivado a partir do contrato estipulado em `specs/task_analyzer_spec.md`.
+As regras de desenvolvimento incluem:
 
+- Utilização de Python 3.11 ou superior.
+- Type hints em funções e métodos.
+- Conformidade com a PEP 8.
+- Docstrings no padrão Google.
+- Princípio da Responsabilidade Única (SRP).
+- Uso de exceções específicas para erros previstos.
+- Utilização de logging estruturado.
+- Testes automatizados para validar comportamentos.
+- Ausência de persistência em arquivos ou banco de dados, conforme as restrições do projeto.
+- Não inclusão de funcionalidades sem aprovação e testes correspondentes.
+- Não alteração da especificação apenas para acomodar uma implementação divergente.
 
-* **Type Hints & Pep 8:** Anotação explicita de tipos em 100% dos parâmetros e retornos das funções.
+As regras detalhadas estão documentadas em `CONTEXT_RULES.md`, enquanto os requisitos funcionais estão descritos em `specs/task_analyzer_spec.md`.
 
+## Considerações sobre a taxa de atraso
 
-* **Documentação:** Google Style Docstrings presentes em todas as funções e módulos.
+A interpretação da taxa de atraso deve respeitar a definição estabelecida na especificação do projeto. Caso não exista um campo de prazo ou uma regra formal para determinar o atraso, essa definição precisa ser esclarecida antes de se estabelecer uma fórmula definitiva.
 
+## Autoria
 
-* **Rastreabilidade e Logs:** Registo estruturado de operações através do módulo padrão `logging`.
+**Aluna:** Kamila Gomes da Silva  
+**Curso:** Ciência da Computação  
+**Instituição:** CEUB — Asa Norte  
+**Turma:** A  
+**Projeto:** TaskAnalyzer  
+**Abordagem:** Specification-Driven Development (SDD)
 
+## Licença
 
-
----
-
-## Créditos e Reconhecimentos
-
-###  Autoria e Desenvolvimento
-* **Kamila Gomes da Silva**
-  * **Curso:** Ciência da Computação — CEUB (Asa Norte)
-  * **E-mail Institucional:** `kamila.gs@sempreceub.com`
-  * **Papel no Projeto:** Piloto de Agentes de IA, Desenvolvedora e Homologadora Crítica
-
----
-
-###  Instituição e Disciplina
-* **Instituição:** Centro Universitário de Brasília (CEUB)
-* **Disciplina:** Bootcamp III (Modalidade EAD - Disciplina Virtual)
-* **Atividade:** Desafio Entrega Intermediária (Fase 2 - Implementação com IA, Test Harness e Versionamento)
-
----
-
-###  Tecnologias e Ferramentas Utilizadas
-* **Linguagem de Programação:** [Python 3.11+](https://www.python.org/)
-* **Framework de Testes:** [Pytest](https://docs.pytest.org/)
-* **Controlo de Versões & Git Bash:** [Git](https://git-scm.com/) & [GitHub](https://github.com/)
-* **Metodologia:** Spec-Driven Development (SDD)
-* **Assistente de IA:** Modelo Gemini (Google AI) — Utilizado para geração e auxílio na homologação do código-fonte e da suíte de testes
+Este projeto está identificado como MIT. Para distribuir o projeto sob essa licença, inclua um arquivo `LICENSE` contendo o texto da licença MIT.
