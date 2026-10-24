@@ -68,7 +68,7 @@ sdd-task-analyzer/
 Clone o repositório:
 
 ```bash
-git clone https://github.com/SEU_USUARIO/sdd-task-analyzer.git
+git clone https://github.com/kamilags232/sdd-task-analyzer.git
 ```
 
 Entre no diretório:
